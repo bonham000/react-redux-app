@@ -22,7 +22,10 @@ class SignupForm extends React.Component {
 	}
 	onSubmit(e) {
 		e.preventDefault();
-		this.props.userSignupRequest(this.state);
+		this.props.userSignupRequest(this.state).then(
+			() => {},
+			({ data }) => this.setState({ errors: data })
+		);
 	}
 	render() {
 		const options = map(timezones, (val, key) => 
